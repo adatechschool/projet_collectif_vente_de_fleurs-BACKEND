@@ -21,7 +21,7 @@ mongoose
 
 //Appeler les routes
 const routes = require("./routes/routes.js");
-// app.use(routes);
+app.use(routes);
 //Si la route n'existe pas :
 app.all("*", (request, response) => {
   response.json("Page not found");
