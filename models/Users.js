@@ -37,3 +37,5 @@ const User = mongoose.model("Users", {
         },
     }
 });
+
+module.exports = User;
