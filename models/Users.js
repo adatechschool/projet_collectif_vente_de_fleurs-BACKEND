@@ -5,6 +5,7 @@ const User = mongoose.model("Users", {
         type: String,
         required: true,
         unique: true,
+        match: [ /. +\@. +\.. + /, 'Please give a valid email address' ]
     },
     firstname: {
         type: String,
