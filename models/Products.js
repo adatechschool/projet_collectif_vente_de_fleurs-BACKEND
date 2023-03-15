@@ -24,14 +24,16 @@ const Product = mongoose.model("Products", {
     type: String,
     required: true,
   },
-  category: [
-    {
-      fleur: { type: Boolean },
-      plante: { type: Boolean },
-      intérieur: { type: Boolean },
-      extérieur: { type: Boolean },
-    },
-  ],
+  category: {
+    fleur: { type: Boolean },
+    plante: { type: Boolean },
+    intérieur: { type: Boolean },
+    extérieur: { type: Boolean },
+  },
+  stock: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = Product;
