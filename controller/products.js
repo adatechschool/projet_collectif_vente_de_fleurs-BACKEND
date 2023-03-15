@@ -17,10 +17,14 @@ exports.createProduct = async (req, res) => {
     });
     //enregistrement de la nouvelle plante dans la BDD:
     await newProduct.save();
-    res.status(201).json("Product created !");
+    res.status(201);
+    res.json("Product created !");
+    res.end();
   } catch (error) {
     //si ça ne fonctionne pas, afficher l'erreur:
-    res.status(400).json("Could not create product : ", error);
+    res.status(400);
+    res.json("Could not create product : ", error);
+    res.end();
   }
 };
 
@@ -34,10 +38,14 @@ exports.deleteProduct = async (req, res) => {
       res.status(201).json("Product deleted !");
     //sinon, si aucun id n'a été transmis:
     } else {
-      res.status(400).json("Missing id");
+      res.status(400);
+      res.json("Missing id");
+      res.end();
     }
   } catch (error) {
-    res.status(400).json("Could not delete product : ", error);
+    res.status(400);
+    res.json("Could not delete product : ", error);
+    res.end();
   }
 }
 
@@ -72,7 +80,9 @@ exports.patchProduct = async (req, res) => {
     res.json(productToUpdate);
     res.end();
   } catch (error) {
-    res.status(400).json("Could not patch product : ", error);
+    res.status(400);
+    res.json("Could not patch product : ", error);
+    res.end();
   }
 }
 
@@ -80,9 +90,13 @@ exports.patchProduct = async (req, res) => {
 exports.getProducts = async (req, res) => {
   try {
     let products = await Product.find().lean();
-    res.status(200).json(products);
+    res.status(200);
+    res.json(products);
+    res.end();
   } catch (error) {
-    res.status(400).json("Failed to load the products");
+    res.status(400);
+    res.json("Failed to load the products");
+    res.end();
   }
 };
 
@@ -90,9 +104,13 @@ exports.getProducts = async (req, res) => {
 exports.getProduct = async (req, res) => {
   try {
     let product = await Product.findOne({ _id: req.params.id }).lean();
-    res.status(200).json(product);
+    res.status(200);
+    res.json(product);
+    res.end();
   } catch (error) {
-    res.status(400).json("Failed to load the product");
+    res.status(400);
+    res.json("Failed to load the product");
+    res.end();
   }
 };
 
