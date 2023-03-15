@@ -23,11 +23,21 @@ exports.createProduct = async (req, res) => {
 };
 
 //On détermine la route "lire tous les produits" (en asynchrone) et on export la fonction dans routes.js:
-exports.getProduct = async (res, req) => {
+exports.getProducts = async (req, res) => {
   try {
-    let product = await Product.find().lean();
-    res.status(200).json(product);
+    let products = await Product.find().lean();
+    res.status(200).json(products);
   } catch (error) {
     res.status(400).json("Failed to load the products");
+  }
+};
+
+//On détermine la route "lire UN produit" (en asynchrone) et on export la fonction dans routes.js:
+exports.getProduct = async (req, res) => {
+  try {
+    let product = await Product.findOne({ _id: req.params.id }).lean();
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(400).json("Failed to load the product");
   }
 };
