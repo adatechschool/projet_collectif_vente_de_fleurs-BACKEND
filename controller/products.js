@@ -1,6 +1,6 @@
 const Product = require("../models/Products");
 
-//on détermine (en asynchrone) et on export la fonction dans routes.js:
+//on détermine la route "créer un produit" (en asynchrone) et on export la fonction dans routes.js:
 exports.createProduct = async (req, res) => {
   try {
     //destructuring:
@@ -19,5 +19,15 @@ exports.createProduct = async (req, res) => {
     res.status(201).json("Product created !");
   } catch (error) {
     res.status(400).json("Failed : ", error);
+  }
+};
+
+//On détermine la route "lire tous les produits" (en asynchrone) et on export la fonction dans routes.js:
+exports.getProduct = async (res, req) => {
+  try {
+    let product = await Product.find().lean();
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(400).json("Failed to load the products");
   }
 };
