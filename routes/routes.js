@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-//on appelle la route dans controller:
+//on appelle les routes depuis controller:
 const productControl = require("../controller/products");
-
-//on connecte la route:
+const orderControl = require("../controller/orders");
+//on connecte les routes:
 router.post("/products", productControl.createProduct);
+router.post("/orders", orderControl.createOrder);
+
 
 router.delete("/products/:id", productControl.deleteProduct);
 router.patch("/products/:id", productControl.patchProduct);
