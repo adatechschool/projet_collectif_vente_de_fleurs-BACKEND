@@ -25,25 +25,18 @@ const Orders = mongoose.model("Orders", {
     required: true,
   },
   date: {
-    type: String, // le type date à l'air galere, à voir
+    type: String,
   },
-  adresse: {
-    numéro: {
-      type: Number,
-    },
-    rue: {
-      type: String,
-    },
-    codePostal: {
-      type: Number,
-      min: 10000,
-      max: 99999,
-    },
-    ville: {
+  address: {
+    numberStreet: {
       type: String,
       required: true,
     },
-    pays: {
+    zipCode: {
+      type: String,
+      required: true,
+    },
+    city: {
       type: String,
       required: true,
     },
