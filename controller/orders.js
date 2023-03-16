@@ -10,16 +10,16 @@ exports.createOrder = async (req, res) => {
     //nouvelle commande :
     const newOrder = new Order({
       userID: userID,
-      owner: req.user, //fait reference a l'user_id (la personne qui fait la commande) 
+      owner: req.user, //fait reference a l'user_id (la personne qui fait la commande)
       product: product,
       priceTotal: priceTotal, //comment additionner les prix ? ici ?
       date: date,
       adresse: adresse,
     });
+    await newOrder.save();
     res.status(201).json("Order confirmed !");
   } catch (error) {
     // si le code trouve une erreur type400, alors affiche le message suivant:
     res.status(400).json("Failed : ", error);
   }
 };
-
