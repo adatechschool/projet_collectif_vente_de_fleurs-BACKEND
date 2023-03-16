@@ -95,7 +95,7 @@ exports.getProducts = async (req, res) => {
     res.end();
   } catch (error) {
     res.status(400);
-    res.json("Failed to load the products");
+    res.json("Failed to load the products : ", error);
     res.end();
   }
 };
@@ -109,7 +109,7 @@ exports.getProduct = async (req, res) => {
     res.end();
   } catch (error) {
     res.status(400);
-    res.json("Failed to load the product");
+    res.json("Failed to load the product : ", error);
     res.end();
   }
 };

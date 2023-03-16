@@ -2,7 +2,7 @@ const express = require("express");
 
 //Créer le serveur
 const app = express();
-const port = 80;
+const port = 8000;
 
 //Middleware = plugin ajouté au serveur pour récupérer des paramètres de type Body
 app.use(express.json());
