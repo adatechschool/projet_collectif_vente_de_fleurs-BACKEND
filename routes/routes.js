@@ -8,4 +8,12 @@ const orderControl = require("../controller/orders");
 router.post("/products", productControl.createProduct);
 router.post("/orders", orderControl.createOrder);
 
+
+router.delete("/products/:id", productControl.deleteProduct);
+router.patch("/products/:id", productControl.patchProduct);
+
+router.get("/products", productControl.getProducts);
+router.get("/products/:id", productControl.getProduct);
+
+
 module.exports = router;
