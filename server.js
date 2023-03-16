@@ -7,6 +7,11 @@ const port = 3000;
 //Middleware = plugin ajouté au serveur pour récupérer des paramètres de type Body
 app.use(express.json());
 
+//CORS (Cross-Origin Resource Sharing) fournit un mécanisme permettant au serveur backend et à un client frontend
+//de communiquer et de transmettre des données via les points de terminaison de l’API
+const cors = require('cors');
+app.use(cors());
+
 const mongoose = require("mongoose");
 
 mongoose
