@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const crypto = require ( 'crypto' );
 
-const User = new mongoose.Schema({
+const User = mongoose.Schema({
     email : {
         type: String,
         required: true,
