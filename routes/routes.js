@@ -17,5 +17,6 @@ router.get("/products", productControl.getProducts);
 router.get("/products/:id", productControl.getProduct);
 
 router.post("/users/signup", userControl.createUser);
+router.post("/users/signin", userControl.checkUser);
 
 module.exports = router;

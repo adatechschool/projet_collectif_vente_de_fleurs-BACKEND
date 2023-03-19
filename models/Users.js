@@ -6,7 +6,7 @@ const User = mongoose.Schema({
     email : {
         type: String,
         required: true,
-        unique: 'email already exists',
+        unique: true, // pour que ceci marche, il faut utiliser User.init() dans le controleur. Ceci est dû à l'asynchrone
     },
     firstname: {
         type: String,
@@ -41,10 +41,11 @@ const User = mongoose.Schema({
 
 });
 
+
 // Méthode qui permet de générer un salt unique
 User.statics.generateSalt = function() {
     return Math.round((new Date().valueOf() * Math.random())) + ''
-},
+};
 
 //Méthode qui permet de générer un hash du password et du salt unique
 //.statics permet de définir des méthodes liées au model entier et pas seulement à une seule instance
@@ -59,7 +60,7 @@ User.statics.generateHash = function(password, salt) {
     } catch (err) {
       return err
     }
-}
+};
 
 // Méthode qui permet d'enregistrer le salt et le hash dans la base de donnée
 //.virtual permet de ne pas enregistré une propriété dans la base de donnée (elle pourrait être aussi utilisée pour les emails...)
@@ -94,4 +95,6 @@ User.statics.authenticate = function(given_password, hash, salt) {
 
 
 
+
 module.exports = mongoose.model('Users', User);
+
