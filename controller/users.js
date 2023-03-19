@@ -17,11 +17,11 @@ exports.createUser = (req, res) => {
                         lastname: lastname,
                         password: password
                     });
+                    await newUser.save();
+                    res.status(200);
+                    res.json("ok");
+                    res.end();
                 }
-                await newUser.save();
-                res.status(200);
-                res.json("ok");
-                res.end();
             });
     } catch (error) {
         res.status(400);
