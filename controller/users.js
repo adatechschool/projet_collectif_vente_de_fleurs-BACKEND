@@ -16,15 +16,15 @@ exports.createUser = async (req, res) => {
       lastname,
       password,
       // address,
-      numberstreet,
-      zipcode,
+      streetNumber,
+      zipCode,
       city,
     } = req.body;
     const salt = uid2(120);
     const hash = SHA256(salt + password).toString(encBase64);
     let userAdress = {
-      numberstreet: numberstreet,
-      zipcode: zipcode,
+      streetNumber: streetNumber,
+      zipCode: zipCode,
       city: city,
     };
 
@@ -34,9 +34,8 @@ exports.createUser = async (req, res) => {
       firstname &&
       lastname &&
       password &&
-      // address
-      numberstreet &&
-      zipcode &&
+      streetNumber &&
+      zipCode &&
       city
     ) {
       //vérifier que l'utilisateur n'existe pas déjà dans la BDD

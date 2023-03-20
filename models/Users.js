@@ -25,11 +25,11 @@ const User = mongoose.model("Users", {
     required: true,
   },
   address: {
-    numberstreet: {
+    streetNumber: {
       type: String,
       required: true,
     },
-    zipcode: {
+    zipCode: {
       type: String,
       required: true,
     },
