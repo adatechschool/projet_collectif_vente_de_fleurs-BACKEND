@@ -4,7 +4,8 @@ const Product = require("../models/Products");
 exports.createProduct = async (req, res) => {
   try {
     //destructuring:
-    const { name, description, images, price, size, category, stock } = req.body;
+    const { name, description, images, price, size, category, stock } =
+      req.body;
     //nouveau produit:
     const newProduct = new Product({
       name: name,
@@ -15,6 +16,7 @@ exports.createProduct = async (req, res) => {
       category: category,
       stock: stock,
     });
+
     //enregistrement de la nouvelle plante dans la BDD:
     await newProduct.save();
     res.status(201);
@@ -36,7 +38,7 @@ exports.deleteProduct = async (req, res) => {
       //on cherche la plante à partir de son id dans la BDD et on la supprime:
       await Product.findByIdAndDelete(req.body.id);
       res.status(201).json("Product deleted !");
-    //sinon, si aucun id n'a été transmis:
+      //sinon, si aucun id n'a été transmis:
     } else {
       res.status(400);
       res.json("Missing id");
@@ -47,7 +49,7 @@ exports.deleteProduct = async (req, res) => {
     res.json("Could not delete product : ", error);
     res.end();
   }
-}
+};
 
 //MODIFIER une plante dans le BDD
 exports.patchProduct = async (req, res) => {
@@ -61,20 +63,22 @@ exports.patchProduct = async (req, res) => {
       size: req.body.size,
       category: req.body.category,
       stock: req.body.stock,
-    }
+    };
     //on cherche la plante à partir de son id dans la BDD:
-    const productToUpdate = await Product.findOne({ _id : req.params.id });
+    const productToUpdate = await Product.findOne({ _id: req.params.id });
     //on remplace les données initiales par les nouvelles si elles sont dans l'objet updateRequest
     //sinon, on garde les données ititiales (productToUpdate)
     productToUpdate.name = updateRequest.name ?? productToUpdate.name;
-    productToUpdate.description = updateRequest.description ?? productToUpdate.description;
+    productToUpdate.description =
+      updateRequest.description ?? productToUpdate.description;
     productToUpdate.images = updateRequest.images ?? productToUpdate.images;
     productToUpdate.price = updateRequest.price ?? productToUpdate.price;
     productToUpdate.size = updateRequest.size ?? productToUpdate.size;
-    productToUpdate.category = updateRequest.category ?? productToUpdate.category;
+    productToUpdate.category =
+      updateRequest.category ?? productToUpdate.category;
     productToUpdate.stock = updateRequest.stock ?? productToUpdate.stock;
     //on remplace l'objet intiial dans la BDD par le nouvel objet modifié productToUpdate:
-    await Product.updateOne({_id  : req.params.id }, {$set: productToUpdate});
+    await Product.updateOne({ _id: req.params.id }, { $set: productToUpdate });
     res.status(201);
     res.json("Product updated !");
     res.json(productToUpdate);
@@ -84,7 +88,7 @@ exports.patchProduct = async (req, res) => {
     res.json("Could not patch product : ", error);
     res.end();
   }
-}
+};
 
 //On détermine la route "lire tous les produits" (en asynchrone) et on export la fonction dans routes.js:
 exports.getProducts = async (req, res) => {
@@ -113,4 +117,3 @@ exports.getProduct = async (req, res) => {
     res.end();
   }
 };
-
