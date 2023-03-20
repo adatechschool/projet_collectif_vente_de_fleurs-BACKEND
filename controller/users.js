@@ -7,7 +7,7 @@ const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 
-//route signup
+// ----------- Route signup/inscription ---------------
 exports.createUser = async (req, res) => {
   try {
     const {
@@ -15,12 +15,18 @@ exports.createUser = async (req, res) => {
       firstname,
       lastname,
       password,
-      numberstreet,
-      zipcode,
+      // address,
+      streetNumber,
+      zipCode,
       city,
     } = req.body;
     const salt = uid2(120);
     const hash = SHA256(salt + password).toString(encBase64);
+    let userAdress = {
+      streetNumber: streetNumber,
+      zipCode: zipCode,
+      city: city,
+    };
 
     //vérifier que tous les champs sont remplis
     if (
@@ -28,8 +34,8 @@ exports.createUser = async (req, res) => {
       firstname &&
       lastname &&
       password &&
-      numberstreet &&
-      zipcode &&
+      streetNumber &&
+      zipCode &&
       city
     ) {
       //vérifier que l'utilisateur n'existe pas déjà dans la BDD
@@ -45,12 +51,9 @@ exports.createUser = async (req, res) => {
           lastname: lastname,
           hash: hash,
           salt: salt,
-          adress: {
-            numberstreet: numberstreet,
-            zipcode: zipcode,
-            city: city,
-          },
+          address: userAdress,
         });
+        // res.json(newUser);
         await newUser.save();
         res.status(200);
         res.json("ok");
@@ -68,7 +71,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-//route signin
+// ---------- Route signin/connexion -------------------
 exports.checkUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -98,6 +101,36 @@ exports.checkUser = async (req, res) => {
   } catch (error) {
     res.status(400);
     res.json("Could not check user", error);
+    res.end();
+  }
+};
+
+// ------------ Route GET / tous les utilisateurs ------------------
+
+exports.getUsers = async (req, res) => {
+  try {
+    let users = await User.find().lean();
+    res.status(200);
+    res.json(users);
+    res.end();
+  } catch (error) {
+    res.status(400);
+    res.json("Failed to load the users : ", error);
+    res.end();
+  }
+};
+
+// ----------- Route GET / trouver un utilisateur par son ID -------------
+
+exports.getUser = async (req, res) => {
+  try {
+    let user = await User.findOne({ _id: req.params.id }).lean();
+    res.status(200);
+    res.json(user);
+    res.end();
+  } catch (error) {
+    res.status(400);
+    res.json("Could not get user", error);
     res.end();
   }
 };
