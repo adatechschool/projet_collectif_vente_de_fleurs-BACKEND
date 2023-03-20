@@ -10,12 +10,28 @@ const encBase64 = require("crypto-js/enc-base64");
 //route signup
 exports.createUser = async (req, res) => {
   try {
-    const { email, firstname, lastname, password } = req.body;
+    const {
+      email,
+      firstname,
+      lastname,
+      password,
+      numberstreet,
+      zipcode,
+      city,
+    } = req.body;
     const salt = uid2(120);
     const hash = SHA256(salt + password).toString(encBase64);
 
     //vérifier que tous les champs sont remplis
-    if (email && firstname && lastname && password) {
+    if (
+      email &&
+      firstname &&
+      lastname &&
+      password &&
+      numberstreet &&
+      zipcode &&
+      city
+    ) {
       //vérifier que l'utilisateur n'existe pas déjà dans la BDD
       const mailCheck = await User.findOne({ email: email }); //va chercher l'email dans les champs email des tables
       if (mailCheck) {
@@ -29,6 +45,11 @@ exports.createUser = async (req, res) => {
           lastname: lastname,
           hash: hash,
           salt: salt,
+          adress: {
+            numberstreet: numberstreet,
+            zipcode: zipcode,
+            city: city,
+          },
         });
         await newUser.save();
         res.status(200);
@@ -55,14 +76,13 @@ exports.checkUser = async (req, res) => {
     if (user) {
       const hashCheck = SHA256(user.salt + password).toString(encBase64);
       if (hashCheck === user.hash) {
-        // si l'utilisateur est bien reconnu : envoi d'un token d'identification valable 24h et de son id
+        // si l'utilisateur est bien reconnu : envoi d'un token d'identification
+        // valable 24h et de son id
         res.status(200).json({
           userId: user._id,
-          token: jwt.sign(
-              { userId: user._id },
-              'ACCESS_TOKEN_SECRET',
-              { expiresIn: '24h' }
-          )
+          token: jwt.sign({ userId: user._id }, "ACCESS_TOKEN_SECRET", {
+            expiresIn: "24h",
+          }),
         });
         res.end();
       } else {

@@ -24,20 +24,20 @@ const User = mongoose.model("Users", {
     type: String,
     required: true,
   },
-  // address: {
-  //     numberStreet : {
-  //         type: String,
-  //         required: true,
-  //     },
-  //     zipCode: {
-  //         type: String,
-  //         required: true,
-  //     },
-  //     city: {
-  //         type: String,
-  //         required: true,
-  //     },
-  // },
+  address: {
+    numberstreet: {
+      type: String,
+      required: true,
+    },
+    zipcode: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 module.exports = User;

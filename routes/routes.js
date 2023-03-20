@@ -14,10 +14,10 @@ router.post("/orders", auth, orderControl.createOrder);
 router.delete("/products/:id", auth, productControl.deleteProduct);
 router.patch("/products/:id", auth, productControl.patchProduct);
 
-router.get("/products", auth, productControl.getProducts);
-router.get("/products/:id", auth, productControl.getProduct);
+router.get("/products", productControl.getProducts);
+router.get("/products/:id", productControl.getProduct);
 
-router.post("/users/signup", auth, userControl.createUser);
+router.post("/users/signup", userControl.createUser);
 router.post("/users/signin", auth, userControl.checkUser);
 
 module.exports = router;
