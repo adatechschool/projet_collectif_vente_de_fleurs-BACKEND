@@ -3,7 +3,7 @@ const User = require("../models/Users");
 //PARTIE ENCRYPTAGE MDP
 const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
-const encBase64 = require("crypto-js/enc-Base64");
+const encBase64 = require("crypto-js/enc-base64");
 
 //route signup
 exports.createUser = async (req, res) => {
