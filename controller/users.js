@@ -1,4 +1,6 @@
 const User = require("../models/Users");
+// JSONwebtoken : génération et vérification de token d'authentification
+const jwt = require("jsonwebtoken");
 
 //PARTIE ENCRYPTAGE MDP
 const uid2 = require("uid2");
@@ -53,8 +55,15 @@ exports.checkUser = async (req, res) => {
     if (user) {
       const hashCheck = SHA256(user.salt + password).toString(encBase64);
       if (hashCheck === user.hash) {
-        res.status(200);
-        res.json("User connected");
+        // si l'utilisateur est bien reconnu : envoi d'un token d'identification valable 24h et de son id
+        res.status(200).json({
+          userId: user._id,
+          token: jwt.sign(
+              { userId: user._id },
+              'ACCESS_TOKEN_SECRET',
+              { expiresIn: '24h' }
+          )
+        });
         res.end();
       } else {
         res.status(400);
