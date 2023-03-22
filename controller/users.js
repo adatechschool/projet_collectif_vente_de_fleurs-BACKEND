@@ -52,7 +52,7 @@ exports.createUser = async (req, res) => {
           hash: hash,
           salt: salt,
           address: userAdress,
-          admin : admin
+          admin: admin,
         });
         // res.json(newUser);
         await newUser.save();
@@ -80,15 +80,25 @@ exports.checkUser = async (req, res) => {
     if (user) {
       const hashCheck = SHA256(user.salt + password).toString(encBase64);
       if (hashCheck === user.hash) {
-        // si l'utilisateur est bien reconnu : envoi d'un token d'identification
-        // valable 24h et de son id
-        res.status(200).json({
-          userId: user._id,
-          token: jwt.sign({ userId: user._id }, "ACCESS_TOKEN_SECRET", {
-            expiresIn: "24h",
-          }),
-          admin : user.admin
-        });
+        // si l'utilisateur est bien reconnu : envoi d'un token d'identification valable 24h et de son id
+        // vérification du statut administrateur ou non, envoi d'un token différent en fonction du statut
+        if (user.admin) {
+          res.status(200).json({
+            userId: user._id,
+            token: jwt.sign({ userId: user._id }, "ACCESS_TOKEN_ADMIN", {
+              expiresIn: "24h",
+            }),
+            admin: user.admin,
+          });
+        } else {
+          res.status(200).json({
+            userId: user._id,
+            token: jwt.sign({ userId: user._id }, "ACCESS_TOKEN_SECRET", {
+              expiresIn: "24h",
+            }),
+            admin: user.admin,
+          });
+        }
         res.end();
       } else {
         res.status(400);
