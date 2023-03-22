@@ -15,7 +15,6 @@ exports.createUser = async (req, res) => {
       firstname,
       lastname,
       password,
-      // address,
       streetNumber,
       zipCode,
       city,
