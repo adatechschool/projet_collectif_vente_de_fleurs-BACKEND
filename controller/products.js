@@ -4,8 +4,28 @@ const Product = require("../models/Products");
 exports.createProduct = async (req, res) => {
   try {
     //destructuring:
-    const { name, description, images, price, size, category, stock } =
-      req.body;
+    const {
+      name,
+      description,
+      price,
+      size,
+      stock,
+      images,
+      fleur,
+      plante,
+      intérieur,
+      extérieur,
+    } = req.body;
+
+    // création catégorie :
+
+    let categories = {
+      fleur: fleur,
+      plante: plante,
+      intérieur: intérieur,
+      extérieur: extérieur,
+    };
+
     //nouveau produit:
     const newProduct = new Product({
       name: name,
@@ -13,7 +33,7 @@ exports.createProduct = async (req, res) => {
       images: images,
       price: price,
       size: size,
-      category: category,
+      category: categories,
       stock: stock,
     });
 
