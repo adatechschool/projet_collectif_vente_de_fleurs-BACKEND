@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { boolean } = require("yargs");
 
 // const crypto = require("crypto");
 
@@ -38,6 +39,10 @@ const User = mongoose.model("Users", {
       required: true,
     },
   },
+  admin: {
+    type: Boolean,
+    required: true,
+  } 
 });
 
 module.exports = User;

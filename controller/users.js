@@ -18,6 +18,7 @@ exports.createUser = async (req, res) => {
       streetNumber,
       zipCode,
       city,
+      admin,
     } = req.body;
     const salt = uid2(120);
     const hash = SHA256(salt + password).toString(encBase64);
@@ -51,6 +52,7 @@ exports.createUser = async (req, res) => {
           hash: hash,
           salt: salt,
           address: userAdress,
+          admin : admin
         });
         // res.json(newUser);
         await newUser.save();
@@ -85,6 +87,7 @@ exports.checkUser = async (req, res) => {
           token: jwt.sign({ userId: user._id }, "ACCESS_TOKEN_SECRET", {
             expiresIn: "24h",
           }),
+          admin : user.admin
         });
         res.end();
       } else {
