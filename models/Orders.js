@@ -5,22 +5,16 @@ const mongoose = require("mongoose");
 const Orders = mongoose.model("Orders", {
   userId: {
     type: String,
-    unique: true,
+    unique: false,
   },
-  // owner: {
-  //   // Owner va stocker un ObjectId, qui est un identifiant unique généré par MongoDB
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User", // revoir comment est nommé dans le champs dans table user
-  // },
-  products: 
-  //[
+  products: [
     {
       productId: { type: String },
       name: { type: String },
       price: { type: Number },
       quantity: { type: Number },
-    },
-  //],
+    }
+  ],
   // priceTotal: {
   //   type: Number,
   //   required: true,
