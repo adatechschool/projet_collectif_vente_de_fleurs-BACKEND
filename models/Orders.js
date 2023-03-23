@@ -7,11 +7,11 @@ const Orders = mongoose.model("Orders", {
     type: String,
     unique: true,
   },
-  owner: {
-    // Owner va stocker un ObjectId, qui est un identifiant unique généré par MongoDB
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // revoir comment est nommé dans le champs dans table user
-  },
+  // owner: {
+  //   // Owner va stocker un ObjectId, qui est un identifiant unique généré par MongoDB
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User", // revoir comment est nommé dans le champs dans table user
+  // },
   product: [
     {
       productID: { type: String },
@@ -20,27 +20,27 @@ const Orders = mongoose.model("Orders", {
       quantity: { type: Number },
     },
   ],
-  priceTotal: {
-    type: Number,
-    required: true,
-  },
-  date: {
-    type: String,
-  },
-  address: {
-    numberStreet: {
-      type: String,
-      required: true,
-    },
-    zipCode: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-  },
+  // priceTotal: {
+  //   type: Number,
+  //   required: true,
+  // },
+  // date: {
+  //   type: String,
+  // },
+  // address: {
+  //   numberStreet: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   zipCode: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   city: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //},
 });
 
 //on export le model pour pouvoir l'utiliser dans controller/orders.js:
