@@ -19,9 +19,9 @@ exports.createOrder = async (req, res) => {
 
     //nouvelle commande :
     const newOrder = new Order({
-      userID: userId,
+      userId: userId,
       // owner: req.user, //fait reference a l'user_id (la personne qui fait la commande)
-      product: product,
+      products: product,
       // priceTotal: priceTotal, //comment additionner les prix ? ici ?
       // date: date,
       // adresse: adresse,

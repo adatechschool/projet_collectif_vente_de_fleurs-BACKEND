@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //création du model Orders:
 const Orders = mongoose.model("Orders", {
-  userID: {
+  userId: {
     type: String,
     unique: true,
   },
@@ -12,14 +12,15 @@ const Orders = mongoose.model("Orders", {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "User", // revoir comment est nommé dans le champs dans table user
   // },
-  product: [
+  products: 
+  //[
     {
-      productID: { type: String },
+      productId: { type: String },
       name: { type: String },
       price: { type: Number },
       quantity: { type: Number },
     },
-  ],
+  //],
   // priceTotal: {
   //   type: Number,
   //   required: true,
