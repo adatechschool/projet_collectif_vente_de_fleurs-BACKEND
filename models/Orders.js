@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Orders = mongoose.model("Orders", {
   userId: {
     type: String,
-    unique: false,
+  //  unique: false,
   },
   products: [
     {
