@@ -16,7 +16,7 @@ router.delete("/products/:id", authAdmin, productControl.deleteProduct);
 router.patch("/products/:id", authAdmin, productControl.patchProduct);
 
 // Routes utilisateur : créer une commande, créer un compte, s'identifier
-router.post("/orders", auth, orderControl.createOrder);
+router.post("/orders", orderControl.createOrder);
 router.post("/users/signup", userControl.createUser);
 router.post("/users/signin", userControl.checkUser);
 
