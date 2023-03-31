@@ -1,4 +1,6 @@
-# WonderFlower <sup>Backend</sup>
+# WonderFlower_backend
+voir le repo __[WonderFlower_frontend](https://github.com/adatechschool/projet_collectif_vente_de_fleurs-FRONTEND/tree/main)__
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -17,3 +19,18 @@ __*5<sup>ème</sup> projet proposé par [Ada Tech School](https://adatechschool.
   - Décider la stack techinique en équipe: MERN
   - Concevoir l'archicteture du projet
   - Etre capable de changer de rôle au cours du projet et récupérer le code des autres (l'équipe est partagée en 2, une partie a commencé en front et l'autre en back, à la deuxième semaine les rôles ont été inversés)
+
+## Réalisation du Projet
+
+### Installation locale du projet et stack utiliséé
+
+### Organisation des fichiers
+
+### Routes d'authentification
+
+### Base de donnée en cloud et herrgement de l'API sur vercel
+
+
+
+
+
