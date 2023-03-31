@@ -22,7 +22,7 @@ __*5<sup>ème</sup> projet proposé par [Ada Tech School](https://adatechschool.
 
 ## Réalisation du Projet
 
-### Installation locale du projet et stack utiliséé
+### Installation locale du projet et stack utilisée
 
 ### Organisation des fichiers
 
