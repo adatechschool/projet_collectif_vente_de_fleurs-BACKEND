@@ -1,5 +1,5 @@
 # WonderFlower_backend
-voir le repo __[WonderFlower_frontend](https://github.com/adatechschool/projet_collectif_vente_de_fleurs-FRONTEND/tree/main)__
+Naviguez sur le site __[Wonder Flower](https://wonderflower.vercel.app/)__ -- voir le repo __[WonderFlower_frontend](https://github.com/adatechschool/projet_collectif_vente_de_fleurs-FRONTEND/tree/main)__
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
@@ -21,18 +21,26 @@ __*5<sup>ème</sup> projet proposé par [Ada Tech School](https://adatechschool.
       - Une page client permettant d'effectuer une commande
   - Décider la stack techinique en équipe: MERN
   - Concevoir l'archicteture du projet
-  - Etre capable de changer de rôle au cours du projet et récupérer le code des autres (l'équipe est partagée en 2, une partie a commencé en front et l'autre en back, à la deuxième semaine les rôles ont été inversés)
+  - Etre capable de changer de rôle au cours du projet et récupérer le code des autres (l'équipe est scindée en 2, une partie commence en front et l'autre en back, à la deuxième semaine les rôles sont inversés)
 
 ## Réalisation du Projet
 
 ### Installation locale du projet et stack utilisée
+API réalisée avec __Node.js__ et __Express.js__. Pour installer ce back-end et ses librairies, utiliser la commande npm install.
+Cette API fait le lien entre le front-end et la base de données non-relationnelle MongoDB.
 
 ### Organisation des fichiers
+Code organisé selon le schéma Modèle-Route-Contrôleur :
+ - Le modèle crée une collection MongoDB
+ - La route définit l'URI (endpoint) de l'API (type de requête HTTP pris en charge, endpoint)
+ - Le contrôleur fait le lien entre la route et le modèle, et gère le transfert d'informations entre l'API et la base de données
 
 ### Routes d'authentification
+Avec la librairie __jsonwebtoken__, génération et envoi d'un token d'authentification lors de la connexion de l'utilisateur ou de l'administrateur (clé secrète différente pour les administrateurs et les utilisateurs).
+Middleware de vérification du token pour les requêtes de création de commande (utilisateur) et de gestion de stock (administrateur).
 
-### Base de donnée en cloud et herrgement de l'API sur vercel
-
+### Base de données et API cloud
+Utilisation de MongoDB Atlas pour l'hébergement cloud de la base de données. API hébergée sur Vercel (exemple : [Produits](https://wonderouman.vercel.app/products) ). Hébergement des images hors base de données sur Cloudinary.
 
 
 
